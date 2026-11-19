@@ -53,8 +53,16 @@ public class ProductService {
     // Update price of a specific product
     public boolean updateProductPrice(long id, double price)
     {
-        String sql="UPDATE product SET price = ? WHERE id = ?";
+        String sql=" UPDATE product SET price = ? WHERE id = ? ";
         int rowAffected = jdbcTemplate.update(sql, price, id);
+        return rowAffected > 0;
+    }
+
+    // Delete a product that matches the id
+    public boolean deleteProductById(long id)
+    {
+        String sql=" DELETE FROM product WHERE id = ? ";
+        int rowAffected = jdbcTemplate.update(sql, id);
         return rowAffected > 0;
     }
 }

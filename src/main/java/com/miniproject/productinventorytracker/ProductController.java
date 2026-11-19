@@ -45,4 +45,15 @@ public class ProductController {
         }
         return " Product for the ID : "+id+" is NOT FOUND. ";
     }
+
+    @DeleteMapping("/{id}")
+    public String deleteProductById(@PathVariable("id") long id)
+    {
+        boolean success = productService.deleteProductById(id);
+        if(success)
+        {
+            return " Product with ID : "+id+" is successfully DELETED. ";
+        }
+        return " Product for the ID : "+id+" is NOT FOUND. ";
+    }
 }
