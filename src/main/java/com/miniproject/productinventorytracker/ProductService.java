@@ -43,4 +43,10 @@ public class ProductService {
         return jdbcTemplate.query(sql, rowMapper);
     }
 
+    // returns a single product that matches the id
+    public Product getProductById(long id)
+    {
+        String sql=" SELECT product_name, price, category FROM product WHERE id = ? ";
+        return jdbcTemplate.queryForObject(sql, rowMapper, id);
+    }
 }
