@@ -34,4 +34,15 @@ public class ProductController {
     {
         return productService.getProductById(id);
     }
+
+    @PutMapping("/{id}/price")
+    public String updateProductPrice(@PathVariable("id") long id, @RequestParam("price") double price)
+    {
+        boolean success = productService.updateProductPrice(id, price);
+        if(success)
+        {
+            return " Price of the Product with ID : "+id+" is successfully Updated. ";
+        }
+        return " Product for the ID : "+id+" is NOT FOUND. ";
+    }
 }

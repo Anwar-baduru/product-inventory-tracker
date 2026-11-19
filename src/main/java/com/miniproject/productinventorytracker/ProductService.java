@@ -49,4 +49,12 @@ public class ProductService {
         String sql=" SELECT product_name, price, category FROM product WHERE id = ? ";
         return jdbcTemplate.queryForObject(sql, rowMapper, id);
     }
+
+    // Update price of a specific product
+    public boolean updateProductPrice(long id, double price)
+    {
+        String sql="UPDATE product SET price = ? WHERE id = ?";
+        int rowAffected = jdbcTemplate.update(sql, price, id);
+        return rowAffected > 0;
+    }
 }
