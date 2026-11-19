@@ -1,10 +1,9 @@
 package com.miniproject.productinventorytracker;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/products")
@@ -22,5 +21,11 @@ public class ProductController {
             return product.getProductName()+" is successfully added to the inventory. ";
         }
         return "PRODUCT : "+product.getProductName()+" is NOT ADDED to the inventory";
+    }
+
+    @GetMapping
+    public List<Product> getProducts(@RequestParam(value = "category",required = false) String category)
+    {
+        return productService.getProducts(category);
     }
 }
